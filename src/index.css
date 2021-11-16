@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap');
 
 :root {
-  --color-dark-tingerine: #fda214;
+  --color-dark-tangerine: #fda214;
+  --color-light-tangerine: #ffb84a;
   --color-spindle: #bcced9;
   --color-arapawa: #304859;
   --color-tangaroa: #152938;
   --color-white-smoke: #f2f2f2;
   --color-bermuda-grey: #7191a5;
-  --color-black-pearl: #1a1c1d;
+  --color-shakespeare: #6395b8;
+  --color-pattens-blue: #dfe7ec;
   --color-snow: #fcfcfc;
   --font-size-h1: 4.8rem;
   --font-size-h2: 3.2rem;
@@ -34,6 +36,10 @@ body {
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  max-width: 110rem;
+  margin: 0 auto;
+  padding: 8rem 0;
 }
 
 h1 {
@@ -52,5 +58,42 @@ button {
   border: none;
   outline: none;
   cursor: pointer;
+  font: inherit;
   border-radius: 4rem;
+  transition: all 0.3s;
+}
+
+/*style of components*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.button {
+  padding: 1rem 2.6rem;
+}
+
+.button-primary {
+  color: var(--color-snow);
+  background-color: var(--color-dark-tangerine);
+}
+
+.button-primary:hover {
+  background-color: var(--color-light-tangerine);
+}
+
+.button-secondary {
+  color: var(--color-arapawa);
+  background-color: var(--color-pattens-blue);
+}
+
+.button-secondary:hover {
+  color: var(--color-snow);
+  background-color: var(--color-shakespeare);
 }
