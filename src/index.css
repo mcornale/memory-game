@@ -31,16 +31,20 @@ html {
 }
 
 body {
-  --padding-left-right: 6rem;
   font-family: 'Atkinson Hyperlegible', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  color: var(--color-bermuda-grey);
+}
+
+#root {
+  --padding-left-right: 4rem;
+  padding: 6rem var(--padding-left-right);
   max-width: calc(110rem + var(--padding-left-right));
   margin: 0 auto;
-  padding: 8rem var(--padding-left-right);
 }
 
 h1 {
@@ -49,6 +53,7 @@ h1 {
 
 h2 {
   font-size: var(--font-size-h2);
+  color: var(--color-arapawa);
 }
 
 h3 {
@@ -101,13 +106,34 @@ button {
 
 .game-grid {
   display: grid;
-  grid-template-columns: repeat(4, 11.8rem);
-  grid-template-rows: repeat(4, 11.8rem);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   justify-content: center;
+  width: 53.2rem;
+  height: 53.2rem;
   gap: 2rem;
-  padding-top: 10rem;
+  margin: 8rem auto;
 }
 
 .game-button {
   background-color: var(--color-arapawa);
+  width: 100%;
+  height: 100%;
+}
+
+.bottom-tabs-container {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.bottom-tab {
+  background-color: var(--color-pattens-blue);
+  border-radius: 1rem;
+  padding: 1.4rem 2rem;
+  flex: 0 1 25%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
