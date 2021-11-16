@@ -31,15 +31,16 @@ html {
 }
 
 body {
+  --padding-left-right: 6rem;
   font-family: 'Atkinson Hyperlegible', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  max-width: 110rem;
+  max-width: calc(110rem + var(--padding-left-right));
   margin: 0 auto;
-  padding: 8rem 0;
+  padding: 8rem var(--padding-left-right);
 }
 
 h1 {
@@ -59,7 +60,7 @@ button {
   outline: none;
   cursor: pointer;
   font: inherit;
-  border-radius: 4rem;
+  border-radius: 6rem;
   transition: all 0.3s;
 }
 
@@ -96,4 +97,17 @@ button {
 .button-secondary:hover {
   color: var(--color-snow);
   background-color: var(--color-shakespeare);
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 11.8rem);
+  grid-template-rows: repeat(4, 11.8rem);
+  justify-content: center;
+  gap: 2rem;
+  padding-top: 10rem;
+}
+
+.game-button {
+  background-color: var(--color-arapawa);
 }
