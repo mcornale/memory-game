@@ -36,15 +36,12 @@ body {
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
   color: var(--color-bermuda-grey);
 }
 
 #root {
-  --padding-left-right: 4rem;
-  padding: 6rem var(--padding-left-right);
-  max-width: calc(110rem + var(--padding-left-right));
-  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
 }
 
 h1 {
@@ -70,6 +67,51 @@ button {
 }
 
 /*style of components*/
+.backdrop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-tangaroa);
+  z-index: 1;
+}
+
+.game-menu-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-menu {
+  background-color: var(--color-snow);
+  border-radius: 2rem;
+  padding: 4rem;
+  width: 65.4rem;
+  margin-top: 6rem;
+}
+
+.game-menu h3 {
+  margin-bottom: 2rem;
+}
+
+.game-menu-buttons {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3.4rem;
+}
+
+.game-container {
+  max-width: 110rem;
+  margin: 0 auto;
+  padding: 6rem 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -85,9 +127,36 @@ button {
   padding: 1rem 2.6rem;
 }
 
+.button-menu-start {
+  color: var(--color-snow);
+  background-color: var(--color-dark-tangerine);
+  font-size: 3rem;
+  width: 100%;
+}
+
+.button-menu-start:hover {
+  background-color: var(--color-light-tangerine);
+}
+
+.button-menu-selection {
+  color: var(--color-snow);
+  background-color: var(--color-spindle);
+  font-size: 2.4rem;
+  width: 100%;
+}
+
+.button-menu-selection:hover {
+  background-color: var(--color-shakespeare);
+}
+
+.button-menu-selection--active {
+  background-color: var(--color-arapawa);
+}
+
 .button-primary {
   color: var(--color-snow);
   background-color: var(--color-dark-tangerine);
+  font-size: 2rem;
 }
 
 .button-primary:hover {
@@ -97,6 +166,7 @@ button {
 .button-secondary {
   color: var(--color-arapawa);
   background-color: var(--color-pattens-blue);
+  font-size: 2rem;
 }
 
 .button-secondary:hover {
@@ -107,7 +177,6 @@ button {
 .game-grid {
   display: grid;
   justify-content: center;
-
   margin: 10rem auto;
   color: var(--color-snow);
 }

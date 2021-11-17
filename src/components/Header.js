@@ -1,11 +1,11 @@
 import HeaderButtons from './HeaderButtons';
 import Logo from './Logo';
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className='header'>
-      <Logo />
-      <HeaderButtons />
+      <Logo color='#152938' />
+      <HeaderButtons onNewGame={props.onNewGame} />
     </header>
   );
 };
