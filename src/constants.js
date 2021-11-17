@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCoffee,
   faAtom,
@@ -16,6 +15,8 @@ import {
   faHamburger,
   faLemon,
   faMeteor,
+  faCar,
+  faSun,
 } from '@fortawesome/free-solid-svg-icons';
 
 const ICONS_ARR = [
@@ -35,6 +36,8 @@ const ICONS_ARR = [
   faHamburger,
   faLemon,
   faMeteor,
+  faCar,
+  faSun,
 ];
 
 const GAME_GRID_SIZES = {
