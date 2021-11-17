@@ -1,5 +1,20 @@
+import { useState } from 'react';
+
 const GameButton = (props) => {
-  return <button className='game-button'>{props.children}</button>;
+  const [isVisible, setIsVisible] = useState(false);
+
+  const changeVisibilityHandler = () => {
+    setIsVisible((prevVisibility) => !prevVisibility);
+  };
+
+  return (
+    <button
+      onClick={changeVisibilityHandler}
+      className={`game-button game-button--${isVisible ? 'visible' : 'hidden'}`}
+    >
+      {props.children}
+    </button>
+  );
 };
 
 export default GameButton;

@@ -7,7 +7,6 @@ const GameGrid = () => {
   const gridSize = useSelector((state) => state.gameSettings.gridSize);
   const gridTheme = useSelector((state) => state.gameSettings.gridTheme);
   const gridElements = [];
-
   const gridDifferentElements = gridSize / 2;
 
   const generateGridElements = () => {
@@ -32,7 +31,6 @@ const GameGrid = () => {
       } while (countInserted < 2);
 
       countInserted = 0;
-      console.log(gridElements);
     }
   };
 
