@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { GAME_GRID_SIZES, GAME_THEMES } from '../constants';
 
 const initialState = {
-  theme: GAME_THEMES.NUMBERS,
+  gridTheme: GAME_THEMES.ICONS,
   numOfPlayers: 1,
   gridSize: GAME_GRID_SIZES['4x4'],
 };
@@ -12,13 +12,13 @@ const gameSettingsSlice = createSlice({
   initialState,
   reducers: {
     setTheme: (state, action) => {
-      state.theme = action.payload;
+      state.gridTheme = action.payload;
     },
     setNumOfPlayers: (state, action) => {
       state.numOfPlayers = action.payload;
     },
     setGridSize: (state, action) => {
-      state.theme = action.payload;
+      state.gridSize = action.payload;
     },
   },
 });
