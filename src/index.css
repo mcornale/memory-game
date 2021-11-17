@@ -116,6 +116,8 @@ button {
   grid-template-rows: repeat(4, 1fr);
   width: 53.2rem;
   height: 53.2rem;
+  font-size: 4.4rem;
+  color: var(--color-snow);
 }
 
 .game-grid-6x6 {
@@ -130,11 +132,12 @@ button {
 }
 
 .game-button {
+  color: inherit;
   background-color: var(--color-spindle);
   width: 100%;
   height: 100%;
   position: relative;
-  clip-path: circle(0%);
+  clip-path: circle(100%);
   transition: all 0.6s linear;
 }
 
