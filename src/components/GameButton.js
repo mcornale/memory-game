@@ -1,10 +1,5 @@
 const GameButton = (props) => {
-  return (
-    <div className='game-button-container'>
-      <button className='game-button-cover'></button>
-      <button className='game-button'>{props.children}</button>
-    </div>
-  );
+  return <button className='game-button'>{props.children}</button>;
 };
 
 export default GameButton;
