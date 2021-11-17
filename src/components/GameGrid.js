@@ -1,8 +1,11 @@
 import GameButton from './GameButton';
+import { useSelector } from 'react-redux';
 
 const GameGrid = () => {
-  const gridSize = 4 * 4;
+  const gridSize = useSelector((state) => state.gameSettings.gridSize);
   const gridElements = [];
+
+  console.log(gridSize);
 
   for (let i = 0; i < gridSize; i++) gridElements.push(<GameButton key={i} />);
 
