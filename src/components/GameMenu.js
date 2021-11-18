@@ -14,7 +14,12 @@ const GameMenu = (props) => {
 
   for (const key in GAME_THEMES) {
     themeButtons.push(
-      <Button key={key} type='menu-selection'>
+      <Button
+        key={key}
+        type={`menu-selection${
+          GAME_THEMES[key] === gridTheme ? '-active' : ''
+        }`}
+      >
         {GAME_THEMES[key][0].toUpperCase() + GAME_THEMES[key].slice(1)}
       </Button>
     );
@@ -22,7 +27,10 @@ const GameMenu = (props) => {
 
   for (let i = 0; i < MAX_NUM_OF_PLAYERS; i++) {
     numOfPlayersButtons.push(
-      <Button key={i} type='menu-selection'>
+      <Button
+        key={i}
+        type={`menu-selection${i + 1 === numOfPlayers ? '-active' : ''}`}
+      >
         {i + 1}
       </Button>
     );
@@ -30,7 +38,12 @@ const GameMenu = (props) => {
 
   for (const key in GAME_GRID_SIZES) {
     gridSizeButtons.push(
-      <Button key={key} type='menu-selection'>
+      <Button
+        key={key}
+        type={`menu-selection${
+          GAME_GRID_SIZES[key] === gridSize ? '-active' : ''
+        }`}
+      >
         {key}
       </Button>
     );
