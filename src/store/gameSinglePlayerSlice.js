@@ -23,8 +23,12 @@ const gameSinglePlayerSlice = createSlice({
         state.secondsElapsed += 1;
       }
     },
+    updateMoves: (state) => {
+      state.moves += 1;
+    },
   },
 });
 
-export const { restartGame, updateTimer } = gameSinglePlayerSlice.actions;
+export const { restartGame, updateTimer, updateMoves } =
+  gameSinglePlayerSlice.actions;
 export default gameSinglePlayerSlice.reducer;

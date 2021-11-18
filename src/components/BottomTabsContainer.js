@@ -16,12 +16,13 @@ const BottomTabsContainer = () => {
     if (MAX_NUM_OF_PLAYERS === 1) {
       tabElements.push(
         <BottomTab
+          key={1}
           value={`${minutesElapsed}:${secondsElapsed
             .toString()
             .padStart(2, '0')}`}
         >{`Time`}</BottomTab>
       );
-      tabElements.push(<BottomTab value={moves}>{`Moves`}</BottomTab>);
+      tabElements.push(<BottomTab key={2} value={moves}>{`Moves`}</BottomTab>);
     } else {
       for (let i = 0; i < MAX_NUM_OF_PLAYERS; i++) {
         tabElements.push(
