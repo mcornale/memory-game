@@ -16,9 +16,6 @@ const GameGrid = () => {
   const gameElements = useSelector((state) => state.game.gameElements);
   const lastTwoMoves = useSelector((state) => state.game.lastTwoMoves);
   const numOfPlayers = useSelector((state) => state.game.numOfPlayers);
-  const activePlayerIndex = useSelector(
-    (state) => state.game.activePlayerIndex
-  );
   const gridElements = [];
 
   const dispatch = useDispatch();

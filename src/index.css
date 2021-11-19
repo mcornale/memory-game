@@ -50,7 +50,7 @@ h1 {
 
 h2 {
   font-size: var(--font-size-h2);
-  color: var(--color-arapawa);
+  color: inherit;
 }
 
 h3 {
@@ -78,7 +78,7 @@ button {
 }
 
 .game-container {
-  max-width: 110rem;
+  max-width: 120rem;
   margin: 0 auto;
   padding: 6rem;
 }
@@ -262,4 +262,36 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.bottom-tab--active {
+  background-color: var(--color-dark-tangerine);
+  color: var(--color-snow);
+  position: relative;
+}
+
+.bottom-tab--active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  border: 1.4rem solid transparent;
+  border-bottom-color: var(--color-dark-tangerine);
+}
+
+.bottom-tab--active::after {
+  content: 'current turn';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-top: 2rem;
+  width: 100%;
+  transform: translateY(100%);
+  color: var(--color-tangaroa);
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  font-size: 1.3rem;
 }
