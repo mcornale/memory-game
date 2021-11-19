@@ -4,19 +4,23 @@ import Header from './components/Header';
 import ModalMenu from './components/ModalMenu';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { generateGameElements } from './store/gameSlice';
+import { generateGameElements, updateTimer } from './store/gameSlice';
 
 function App() {
   const isModalVisible = useSelector((state) => state.modalMenu.isVisible);
   const gameStarted = useSelector((state) => state.game.gameStarted);
-  const gridSize = useSelector((state) => state.game.gridSize);
-  const gridDifferentElements = gridSize / 2;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(generateGameElements());
-  }, [gameStarted, gridSize, gridDifferentElements, dispatch]);
+    const timer = setInterval(() => {
+      dispatch(updateTimer());
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [gameStarted, dispatch]);
 
   return (
     <div className='game-container'>

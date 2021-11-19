@@ -1,18 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { toggleModalVisibility } from '../store/modalMenuSlice';
 import Button from './Button';
-import { restartGame, startNewGame } from '../store/gameSlice';
+import { startNewGame } from '../store/gameSlice';
 
 const HeaderButtons = () => {
   const dispatch = useDispatch();
 
   const onNewGameHandler = () => {
-    onGameRestart();
     dispatch(toggleModalVisibility());
   };
 
   const onGameRestart = () => {
-    dispatch(restartGame());
     dispatch(startNewGame());
   };
 

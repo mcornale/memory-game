@@ -18,9 +18,9 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     setSettings: (state, action) => {
+      state.gridSize = action.payload.gridSize;
       state.gridTheme = action.payload.gridTheme;
       state.numOfPlayers = action.payload.numOfPlayers;
-      state.gridSize = action.payload.gridSize;
     },
     generateGameElements: (state) => {
       const gridDifferentElements = state.gridSize / 2;
@@ -47,13 +47,6 @@ const gameSlice = createSlice({
       }
 
       state.gameElements = newGameElements;
-    },
-    restartGame: (state) => {
-      state.minutesElapsed = 0;
-      state.secondsElapsed = 0;
-      state.moves = 0;
-      state.gameElements = [];
-      state.lastTwoMoves = [];
     },
     updateTimer: (state) => {
       if (state.secondsElapsed + 1 === 60) {
@@ -91,6 +84,11 @@ const gameSlice = createSlice({
       });
     },
     startNewGame: (state) => {
+      state.minutesElapsed = 0;
+      state.secondsElapsed = 0;
+      state.moves = 0;
+      state.gameElements = [];
+      state.lastTwoMoves = [];
       state.gameStarted += 1;
     },
   },
