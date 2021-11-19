@@ -5,16 +5,17 @@ const initialState = {
   gameElements: [],
   minutesElapsed: 0,
   secondsElapsed: 0,
-  moves: 0,
+  moves: [],
   lastTwoMoves: [],
   gameStarted: 0,
   gridTheme: GAME_THEMES.NUMBERS,
   numOfPlayers: 1,
+  activePlayerIndex: 0,
   gridSize: GAME_GRID_SIZES['4x4'],
 };
 
 const gameSlice = createSlice({
-  name: 'gameSinglePlayer',
+  name: 'gameSlice',
   initialState,
   reducers: {
     setSettings: (state, action) => {
@@ -63,7 +64,8 @@ const gameSlice = createSlice({
       state.lastTwoMoves.push(action.payload);
     },
     handleClickGameElement: (state, action) => {
-      if (state.lastTwoMoves.length === 2) state.moves += 1;
+      if (state.lastTwoMoves.length === 2)
+        state.moves[state.activePlayerIndex] += 1;
 
       const { payload: gameElement } = action;
       state.gameElements[gameElement.index].isVisible =
@@ -86,10 +88,17 @@ const gameSlice = createSlice({
     startNewGame: (state) => {
       state.minutesElapsed = 0;
       state.secondsElapsed = 0;
-      state.moves = 0;
       state.gameElements = [];
       state.lastTwoMoves = [];
+
+      for (let i = 0; i < state.numOfPlayers; i++) state.moves[i] = 0;
+
       state.gameStarted += 1;
+    },
+    changePlayerTurn: (state) => {
+      if (state.activePlayerIndex + 1 === state.numOfPlayers)
+        state.activePlayerIndex = 0;
+      else state.activePlayerIndex += 1;
     },
   },
 });
@@ -104,5 +113,6 @@ export const {
   hideGameElementsVisibility,
   disableElementsActiveState,
   startNewGame,
+  changePlayerTurn,
 } = gameSlice.actions;
 export default gameSlice.reducer;
