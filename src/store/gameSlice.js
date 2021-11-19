@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { GAME_GRID_SIZES, GAME_THEMES } from '../constants';
 
 const initialState = {
   gameElements: [],
@@ -6,21 +7,31 @@ const initialState = {
   secondsElapsed: 0,
   moves: 0,
   lastTwoMoves: [],
+  gameStarted: 0,
+  gridTheme: GAME_THEMES.NUMBERS,
+  numOfPlayers: 1,
+  gridSize: GAME_GRID_SIZES['4x4'],
 };
 
 const gameSlice = createSlice({
   name: 'gameSinglePlayer',
   initialState,
   reducers: {
-    generateGameElements: (state, action) => {
+    setSettings: (state, action) => {
+      state.gridTheme = action.payload.gridTheme;
+      state.numOfPlayers = action.payload.numOfPlayers;
+      state.gridSize = action.payload.gridSize;
+    },
+    generateGameElements: (state) => {
+      const gridDifferentElements = state.gridSize / 2;
       const newGameElements = [];
 
-      for (let i = 0; i < action.payload.gridDifferentElements; i++) {
+      for (let i = 0; i < gridDifferentElements; i++) {
         let randomPosition = 0;
         let countInserted = 0;
 
         do {
-          randomPosition = Math.floor(Math.random() * action.payload.gridSize);
+          randomPosition = Math.floor(Math.random() * state.gridSize);
           if (newGameElements[randomPosition] === undefined) {
             newGameElements[randomPosition] = {
               value: i + 1,
@@ -41,6 +52,8 @@ const gameSlice = createSlice({
       state.minutesElapsed = 0;
       state.secondsElapsed = 0;
       state.moves = 0;
+      state.gameElements = [];
+      state.lastTwoMoves = [];
     },
     updateTimer: (state) => {
       if (state.secondsElapsed + 1 === 60) {
@@ -77,10 +90,14 @@ const gameSlice = createSlice({
         state.gameElements[gameElementToChangeActive.index].isActive = false;
       });
     },
+    startNewGame: (state) => {
+      state.gameStarted += 1;
+    },
   },
 });
 
 export const {
+  setSettings,
   generateGameElements,
   restartGame,
   updateTimer,
@@ -88,5 +105,6 @@ export const {
   handleClickGameElement,
   hideGameElementsVisibility,
   disableElementsActiveState,
+  startNewGame,
 } = gameSlice.actions;
 export default gameSlice.reducer;

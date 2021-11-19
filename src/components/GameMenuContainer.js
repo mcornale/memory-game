@@ -5,7 +5,7 @@ const GameMenuContainer = (props) => {
   return (
     <div className='game-menu-container'>
       <Logo color='#fcfcfc' />
-      <GameMenu onGameStart={props.onGameStart} />
+      <GameMenu />
     </div>
   );
 };

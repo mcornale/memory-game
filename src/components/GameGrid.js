@@ -10,11 +10,12 @@ import { GAME_GRID_SIZES, GAME_THEMES, ICONS_ARR } from '../constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const GameGrid = () => {
-  const gridSize = useSelector((state) => state.gameSettings.gridSize);
-  const gridTheme = useSelector((state) => state.gameSettings.gridTheme);
+  const gridSize = useSelector((state) => state.game.gridSize);
+  const gridTheme = useSelector((state) => state.game.gridTheme);
   const gameElements = useSelector((state) => state.game.gameElements);
   const lastTwoMoves = useSelector((state) => state.game.lastTwoMoves);
   const gridElements = [];
+
   const dispatch = useDispatch();
 
   const onMoveMadeHandler = (gameElement) => {

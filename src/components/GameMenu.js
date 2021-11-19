@@ -1,18 +1,16 @@
 import Button from './Button';
-
 import { MAX_NUM_OF_PLAYERS, GAME_GRID_SIZES, GAME_THEMES } from '../constants';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  setTheme,
-  setNumOfPlayers,
-  setGridSize,
-} from '../store/gameSettingsSlice';
+import { useDispatch } from 'react-redux';
+import { setSettings } from '../store/gameSlice';
+import { toggleModalVisibility } from '../store/modalMenuSlice';
 import firstCapitalLetter from '../helpers/firstCapitalLetter';
+import { useState } from 'react';
 
-const GameMenu = (props) => {
-  const gridSize = useSelector((state) => state.gameSettings.gridSize);
-  const numOfPlayers = useSelector((state) => state.gameSettings.numOfPlayers);
-  const gridTheme = useSelector((state) => state.gameSettings.gridTheme);
+const GameMenu = () => {
+  const [gridSize, setGridSize] = useState(GAME_GRID_SIZES);
+  const [numOfPlayers, setNumOfPlayers] = useState(1);
+  const [gridTheme, setGridTheme] = useState(GAME_THEMES);
+
   const dispatch = useDispatch();
 
   const themeButtons = [];
@@ -20,15 +18,20 @@ const GameMenu = (props) => {
   const gridSizeButtons = [];
 
   const onChangeThemeHandler = (newGameTheme) => {
-    dispatch(setTheme(newGameTheme));
+    setGridTheme(newGameTheme);
   };
 
   const onChangeNumOfPlayersHandler = (newNumOfPlayers) => {
-    dispatch(setNumOfPlayers(newNumOfPlayers));
+    setNumOfPlayers(newNumOfPlayers);
   };
 
   const onChangeGridSizeHandler = (newGridSize) => {
-    dispatch(setGridSize(newGridSize));
+    setGridSize(newGridSize);
+  };
+
+  const onNewGameHandler = () => {
+    dispatch(toggleModalVisibility());
+    dispatch(setSettings({ gridSize, numOfPlayers, gridTheme }));
   };
 
   const generateThemeButtons = () => {
@@ -89,7 +92,7 @@ const GameMenu = (props) => {
       <div className='game-menu-buttons'>{numOfPlayersButtons}</div>
       <h3>Grid Size</h3>
       <div className='game-menu-buttons'>{gridSizeButtons}</div>
-      <Button onClick={props.onGameStart} type='menu-start'>
+      <Button onClick={onNewGameHandler} type='menu-start'>
         Start Game
       </Button>
     </div>

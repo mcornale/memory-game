@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import gameSettingsReducer from './gameSettingsSlice';
 import gameReducer from './gameSlice';
+import modalMenuReducer from './modalMenuSlice';
 
 export const store = configureStore({
   reducer: {
-    gameSettings: gameSettingsReducer,
     game: gameReducer,
+    modalMenu: modalMenuReducer,
   },
 });

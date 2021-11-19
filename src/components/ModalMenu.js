@@ -6,7 +6,7 @@ const ModalMenu = (props) => {
   return ReactDOM.createPortal(
     <>
       <Backdrop />
-      <GameMenuContainer onGameStart={props.onGameStart} />
+      <GameMenuContainer />
     </>,
     document.getElementById('root')
   );
