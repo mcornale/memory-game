@@ -44,7 +44,7 @@ const GameGrid = () => {
         {gridTheme === GAME_THEMES.NUMBERS ? (
           gameElement.value
         ) : (
-          <FontAwesomeIcon icon={ICONS_ARR[gameElement.value]} />
+          <FontAwesomeIcon icon={ICONS_ARR[gameElement.value - 1]} />
         )}
       </GameButton>
     );
