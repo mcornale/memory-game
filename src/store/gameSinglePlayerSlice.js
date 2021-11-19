@@ -29,6 +29,6 @@ const gameSinglePlayerSlice = createSlice({
   },
 });
 
-export const { restartGame, updateTimer, updateMoves } =
+export const { restartGame, updateTimer, updateMoves, addToLastTwoMovesIndex } =
   gameSinglePlayerSlice.actions;
 export default gameSinglePlayerSlice.reducer;
