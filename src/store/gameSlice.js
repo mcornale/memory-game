@@ -53,12 +53,11 @@ const gameSlice = createSlice({
     updateLastTwoMoves: (state, action) => {
       if (state.lastTwoMoves.length === 2) {
         state.lastTwoMoves = [];
-        state.moves += 1;
       }
       state.lastTwoMoves.push(action.payload);
     },
     handleClickGameElement: (state, action) => {
-      if (state.lastTwoMoves.length === 2);
+      if (state.lastTwoMoves.length === 2) state.moves += 1;
 
       const { payload: gameElement } = action;
       state.gameElements[gameElement.index].isVisible =
