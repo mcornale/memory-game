@@ -1,12 +1,21 @@
 const GameButton = (props) => {
   return (
     <button
+      className='game-button'
       onClick={!props.isVisible && props.onMoveMade}
-      className={`game-button game-button--${
-        props.isVisible ? 'visible' : 'hidden'
-      } game-button--${props.isActive ? 'active' : 'inactive'}`}
     >
-      {props.children}
+      <div
+        className={`game-button__cover game-button__cover--${
+          props.isVisible ? 'hidden' : 'visible'
+        }`}
+      ></div>
+      <div
+        className={`game-button__content  ${
+          props.isActive ? 'game-button__content--active' : ''
+        }`}
+      >
+        {props.children}
+      </div>
     </button>
   );
 };

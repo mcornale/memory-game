@@ -53,11 +53,12 @@ const gameSlice = createSlice({
     updateLastTwoMoves: (state, action) => {
       if (state.lastTwoMoves.length === 2) {
         state.lastTwoMoves = [];
+        state.moves += 1;
       }
       state.lastTwoMoves.push(action.payload);
     },
-    updateSingleGameElementVisibility: (state, action) => {
-      if (state.lastTwoMoves.length === 2) state.moves += 1;
+    handleClickGameElement: (state, action) => {
+      if (state.lastTwoMoves.length === 2);
 
       const { payload: gameElement } = action;
       state.gameElements[gameElement.index].isVisible =
@@ -85,7 +86,7 @@ export const {
   restartGame,
   updateTimer,
   updateLastTwoMoves,
-  updateSingleGameElementVisibility,
+  handleClickGameElement,
   hideGameElementsVisibility,
   disableElementsActiveState,
 } = gameSlice.actions;

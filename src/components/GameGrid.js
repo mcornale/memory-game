@@ -2,7 +2,7 @@ import GameButton from './GameButton';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   updateLastTwoMoves,
-  updateSingleGameElementVisibility,
+  handleClickGameElement,
   hideGameElementsVisibility,
   disableElementsActiveState,
 } from '../store/gameSlice';
@@ -17,11 +17,9 @@ const GameGrid = () => {
   const gridElements = [];
   const dispatch = useDispatch();
 
-  console.log(gridElements);
-
   const onMoveMadeHandler = (gameElement) => {
     dispatch(updateLastTwoMoves(gameElement));
-    dispatch(updateSingleGameElementVisibility(gameElement));
+    dispatch(handleClickGameElement(gameElement));
 
     if (lastTwoMoves.length === 2) {
       dispatch(disableElementsActiveState([lastTwoMoves[0], lastTwoMoves[1]]));
