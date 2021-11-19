@@ -3,13 +3,9 @@ import { MAX_NUM_OF_PLAYERS } from '../constants';
 import { useSelector } from 'react-redux';
 
 const BottomTabsContainer = () => {
-  const minutesElapsed = useSelector(
-    (state) => state.gameSinglePlayer.minutesElapsed
-  );
-  const secondsElapsed = useSelector(
-    (state) => state.gameSinglePlayer.secondsElapsed
-  );
-  const moves = useSelector((state) => state.gameSinglePlayer.moves);
+  const minutesElapsed = useSelector((state) => state.game.minutesElapsed);
+  const secondsElapsed = useSelector((state) => state.game.secondsElapsed);
+  const moves = useSelector((state) => state.game.moves);
   const tabElements = [];
 
   const generateBottomTabs = () => {

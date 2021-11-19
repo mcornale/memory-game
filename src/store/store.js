@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import gameSettingsReducer from './gameSettingsSlice';
-import gameSinglePlayerReducer from './gameSinglePlayerSlice';
+import gameReducer from './gameSlice';
 
 export const store = configureStore({
   reducer: {
     gameSettings: gameSettingsReducer,
-    gameSinglePlayer: gameSinglePlayerReducer,
+    game: gameReducer,
   },
 });

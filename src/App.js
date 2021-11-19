@@ -3,11 +3,17 @@ import BottomTabsContainer from './components/BottomTabsContainer';
 import GameGrid from './components/GameGrid';
 import Header from './components/Header';
 import ModalMenu from './components/ModalMenu';
-import { useDispatch } from 'react-redux';
-import { updateTimer, restartGame } from './store/gameSinglePlayerSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  updateTimer,
+  restartGame,
+  generateGameElements,
+} from './store/gameSlice';
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(true);
+  const gridSize = useSelector((state) => state.gameSettings.gridSize);
+  const gridDifferentElements = gridSize / 2;
   const dispatch = useDispatch();
   let timer = useRef();
 
@@ -23,6 +29,14 @@ function App() {
   }, [isModalVisible, dispatch]);
 
   const changeModalVisibilityHandler = () => {
+    if (isModalVisible)
+      dispatch(
+        generateGameElements({
+          gridSize,
+          gridDifferentElements,
+        })
+      );
+
     setIsModalVisible((prevModalVisibility) => !prevModalVisibility);
   };
 

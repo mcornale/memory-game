@@ -1,40 +1,56 @@
 import GameButton from './GameButton';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  updateLastTwoMoves,
+  updateSingleGameElementVisibility,
+  hideGameElementsVisibility,
+  disableElementsActiveState,
+} from '../store/gameSlice';
 import { GAME_GRID_SIZES, GAME_THEMES, ICONS_ARR } from '../constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const GameGrid = () => {
   const gridSize = useSelector((state) => state.gameSettings.gridSize);
   const gridTheme = useSelector((state) => state.gameSettings.gridTheme);
+  const gameElements = useSelector((state) => state.game.gameElements);
+  const lastTwoMoves = useSelector((state) => state.game.lastTwoMoves);
   const gridElements = [];
-  const gridDifferentElements = gridSize / 2;
+  const dispatch = useDispatch();
 
-  const generateGridElements = () => {
-    for (let i = 0; i < gridDifferentElements; i++) {
-      let randomPosition = 0;
-      let countInserted = 0;
+  console.log(gridElements);
 
-      do {
-        randomPosition = Math.ceil(Math.random() * gridSize);
-        if (gridElements[randomPosition] === undefined) {
-          gridElements[randomPosition] = (
-            <GameButton key={randomPosition}>
-              {gridTheme === GAME_THEMES.NUMBERS ? (
-                i + 1
-              ) : (
-                <FontAwesomeIcon icon={ICONS_ARR[i]} />
-              )}
-            </GameButton>
-          );
-          countInserted++;
-        }
-      } while (countInserted < 2);
+  const onMoveMadeHandler = (gameElement) => {
+    dispatch(updateLastTwoMoves(gameElement));
+    dispatch(updateSingleGameElementVisibility(gameElement));
 
-      countInserted = 0;
+    if (lastTwoMoves.length === 2) {
+      dispatch(disableElementsActiveState([lastTwoMoves[0], lastTwoMoves[1]]));
+      if (lastTwoMoves[0].value !== lastTwoMoves[1].value)
+        dispatch(
+          hideGameElementsVisibility([lastTwoMoves[0], lastTwoMoves[1]])
+        );
     }
   };
 
-  generateGridElements();
+  gameElements.forEach((gameElement, index) => {
+    gridElements.push(
+      <GameButton
+        isVisible={gameElement.isVisible}
+        isActive={gameElement.isActive}
+        onMoveMade={onMoveMadeHandler.bind(null, {
+          value: gameElement.value,
+          index,
+        })}
+        key={index}
+      >
+        {gridTheme === GAME_THEMES.NUMBERS ? (
+          gameElement.value
+        ) : (
+          <FontAwesomeIcon icon={ICONS_ARR[gameElement.value]} />
+        )}
+      </GameButton>
+    );
+  });
 
   return (
     <div
