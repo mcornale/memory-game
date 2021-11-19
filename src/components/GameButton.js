@@ -2,7 +2,7 @@ const GameButton = (props) => {
   return (
     <button
       className='game-button'
-      onClick={!props.isVisible && props.onMoveMade}
+      {...(!props.isVisible ? { onClick: props.onMoveMade } : {})}
     >
       <div
         className={`game-button__cover game-button__cover--${
