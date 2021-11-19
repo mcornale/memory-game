@@ -1,15 +1,15 @@
 import BottomTab from './BottomTab';
-import { MAX_NUM_OF_PLAYERS } from '../constants';
 import { useSelector } from 'react-redux';
 
 const BottomTabsContainer = () => {
   const minutesElapsed = useSelector((state) => state.game.minutesElapsed);
   const secondsElapsed = useSelector((state) => state.game.secondsElapsed);
   const moves = useSelector((state) => state.game.moves);
+  const numOfPlayers = useSelector((state) => state.game.numOfPlayers);
   const tabElements = [];
 
   const generateBottomTabs = () => {
-    if (MAX_NUM_OF_PLAYERS === 1) {
+    if (numOfPlayers === 1) {
       tabElements.push(
         <BottomTab
           key={1}
@@ -20,7 +20,7 @@ const BottomTabsContainer = () => {
       );
       tabElements.push(<BottomTab key={2} value={moves}>{`Moves`}</BottomTab>);
     } else {
-      for (let i = 0; i < MAX_NUM_OF_PLAYERS; i++) {
+      for (let i = 0; i < numOfPlayers; i++) {
         tabElements.push(
           <BottomTab key={i} value={0}>{`Player ${i + 1}`}</BottomTab>
         );

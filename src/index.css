@@ -77,6 +77,23 @@ button {
   z-index: 2;
 }
 
+.game-container {
+  max-width: 110rem;
+  margin: 0 auto;
+  padding: 6rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 2rem;
+}
+
 .game-menu-container {
   position: absolute;
   top: 50%;
@@ -104,23 +121,6 @@ button {
   display: flex;
   gap: 2rem;
   margin-bottom: 3.4rem;
-}
-
-.game-container {
-  max-width: 110rem;
-  margin: 0 auto;
-  padding: 6rem 0;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.header-buttons {
-  display: flex;
-  gap: 2rem;
 }
 
 .button {

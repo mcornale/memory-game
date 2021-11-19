@@ -1,15 +1,21 @@
 import Button from './Button';
 import { MAX_NUM_OF_PLAYERS, GAME_GRID_SIZES, GAME_THEMES } from '../constants';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSettings, startNewGame } from '../store/gameSlice';
 import { toggleModalVisibility } from '../store/modalMenuSlice';
 import firstCapitalLetter from '../helpers/firstCapitalLetter';
 import { useState } from 'react';
 
 const GameMenu = () => {
-  const [gridSize, setGridSize] = useState(GAME_GRID_SIZES['4x4']);
-  const [numOfPlayers, setNumOfPlayers] = useState(1);
-  const [gridTheme, setGridTheme] = useState(GAME_THEMES.NUMBERS);
+  const [gridSize, setGridSize] = useState(
+    useSelector((state) => state.game.gridSize)
+  );
+  const [numOfPlayers, setNumOfPlayers] = useState(
+    useSelector((state) => state.game.numOfPlayers)
+  );
+  const [gridTheme, setGridTheme] = useState(
+    useSelector((state) => state.game.gridTheme)
+  );
 
   const dispatch = useDispatch();
 
