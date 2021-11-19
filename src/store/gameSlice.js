@@ -90,6 +90,8 @@ const gameSlice = createSlice({
       state.secondsElapsed = 0;
       state.gameElements = [];
       state.lastTwoMoves = [];
+      state.activePlayerIndex = 0;
+      state.moves = [];
 
       for (let i = 0; i < state.numOfPlayers; i++) state.moves[i] = 0;
 
