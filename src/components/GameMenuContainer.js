@@ -1,9 +1,9 @@
 import GameMenu from './GameMenu';
 import Logo from './Logo';
 
-const GameMenuContainer = (props) => {
+const GameMenuContainer = () => {
   return (
-    <div className='game-menu-container'>
+    <div className='modal-card'>
       <Logo color='#fcfcfc' />
       <GameMenu />
     </div>

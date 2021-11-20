@@ -12,6 +12,7 @@ const initialState = {
   numOfPlayers: 1,
   activePlayerIndex: 0,
   gridSize: GAME_GRID_SIZES['4x4'],
+  isGameFinished: false,
 };
 
 const gameSlice = createSlice({
@@ -86,21 +87,24 @@ const gameSlice = createSlice({
       });
     },
     startNewGame: (state) => {
+      state.isGameFinished = false;
       state.minutesElapsed = 0;
       state.secondsElapsed = 0;
       state.gameElements = [];
       state.lastTwoMoves = [];
-      state.activePlayerIndex = 0;
       state.moves = [];
+      state.activePlayerIndex = 0;
+      state.gameStarted += 1;
 
       for (let i = 0; i < state.numOfPlayers; i++) state.moves[i] = 0;
-
-      state.gameStarted += 1;
     },
     changePlayerTurn: (state) => {
       if (state.activePlayerIndex + 1 === state.numOfPlayers)
         state.activePlayerIndex = 0;
       else state.activePlayerIndex += 1;
+    },
+    setGameFinished: (state) => {
+      state.isGameFinished = true;
     },
   },
 });
@@ -116,5 +120,6 @@ export const {
   disableElementsActiveState,
   startNewGame,
   changePlayerTurn,
+  setGameFinished,
 } = gameSlice.actions;
 export default gameSlice.reducer;
