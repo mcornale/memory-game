@@ -13,7 +13,7 @@ const GameButton = (props) => {
       ></div>
       <div
         className={`${styles['game-button__content']}  ${
-          props.isVisible ? styles['game-button__cover--active'] : ''
+          props.isActive ? styles['game-button__content--active'] : ''
         }`}
       >
         {props.children}
