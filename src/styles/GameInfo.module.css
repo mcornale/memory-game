@@ -1,0 +1,50 @@
+.game-info {
+  background-color: var(--color-pattens-blue);
+  border-radius: 1rem;
+  padding: 1.4rem 2rem;
+  flex: 1 1 25%;
+  max-width: 30rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s;
+}
+
+.game-info__title {
+  color: var(--color-arapawa);
+}
+
+.game-info--active {
+  background-color: var(--color-dark-tangerine);
+  color: var(--color-snow);
+  position: relative;
+}
+
+.game-info--active .game-info__title {
+  color: var(--color-snow);
+}
+
+.game-info--active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  border: 1.4rem solid transparent;
+  border-bottom-color: var(--color-dark-tangerine);
+}
+
+.game-info--active::after {
+  content: 'current turn';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding-top: 2rem;
+  width: 100%;
+  transform: translateY(100%);
+  color: var(--color-tangaroa);
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  font-size: 1.3rem;
+}

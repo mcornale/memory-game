@@ -1,0 +1,42 @@
+.game-button {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  color: var(--color-snow);
+}
+
+.game-button__cover,
+.game-button__content {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.game-button__cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-arapawa);
+  z-index: 1;
+  transition: all 0.2s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+
+.game-button__cover:hover {
+  background-color: var(--color-shakespeare);
+}
+
+.game-button__cover--hidden {
+  transform: scale(0);
+}
+
+.game-button__content {
+  color: inherit;
+  background-color: var(--color-spindle);
+  display: grid;
+  place-items: center;
+  transition: all 0.2s linear;
+}
+
+.game-button__content--active {
+  background-color: var(--color-dark-tangerine);
+}

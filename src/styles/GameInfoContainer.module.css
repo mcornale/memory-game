@@ -1,0 +1,6 @@
+.game-info-container {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  width: 100%;
+}

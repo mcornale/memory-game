@@ -1,0 +1,13 @@
+.game-settings-menu {
+  max-width: 65.4rem;
+}
+
+.game-settings-menu__title {
+  margin-bottom: 1.6rem;
+}
+
+.game-settings-menu__buttons {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3.4rem;
+}

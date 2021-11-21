@@ -1,0 +1,7 @@
+.modal-window {
+  background-color: var(--color-snow);
+  border-radius: 2rem;
+  padding: 4rem;
+  width: 65.4rem;
+  margin-top: 6rem;
+}

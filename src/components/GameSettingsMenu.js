@@ -5,8 +5,9 @@ import { setSettings, startNewGame } from '../store/gameSlice';
 import { toggleModalVisibility } from '../store/modalMenuSlice';
 import firstCapitalLetter from '../helpers/firstCapitalLetter';
 import { useState } from 'react';
+import styles from '../styles/GameSettingsMenu.module.css';
 
-const GameMenu = () => {
+const GameSettingsMenu = () => {
   const [gridSize, setGridSize] = useState(
     useSelector((state) => state.game.gridSize)
   );
@@ -92,13 +93,21 @@ const GameMenu = () => {
   generateGridSizeButtons();
 
   return (
-    <div className='game-menu'>
-      <h3>Select Theme</h3>
-      <div className='game-menu-buttons'>{themeButtons}</div>
-      <h3>Numbers of Players</h3>
-      <div className='game-menu-buttons'>{numOfPlayersButtons}</div>
-      <h3>Grid Size</h3>
-      <div className='game-menu-buttons'>{gridSizeButtons}</div>
+    <div className={styles['game-settings-menu']}>
+      <h3 className={styles['game-settings-menu__title']}>Select Theme</h3>
+      <div className={styles['game-settings-menu__buttons']}>
+        {themeButtons}
+      </div>
+      <h3 className={styles['game-settings-menu__title']}>
+        Numbers of Players
+      </h3>
+      <div className={styles['game-settings-menu__buttons']}>
+        {numOfPlayersButtons}
+      </div>
+      <h3 className={styles['game-settings-menu__title']}>Grid Size</h3>
+      <div className={styles['game-settings-menu__buttons']}>
+        {gridSizeButtons}
+      </div>
       <Button onClick={onNewGameHandler} type='menu-start'>
         Start Game
       </Button>
@@ -106,4 +115,4 @@ const GameMenu = () => {
   );
 };
 
-export default GameMenu;
+export default GameSettingsMenu;

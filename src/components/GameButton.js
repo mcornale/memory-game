@@ -1,17 +1,19 @@
+import styles from '../styles/GameButton.module.css';
+
 const GameButton = (props) => {
   return (
     <button
-      className='game-button'
+      className={`${styles['game-button']}`}
       {...(!props.isVisible ? { onClick: props.onMoveMade } : {})}
     >
       <div
-        className={`game-button__cover ${
-          props.isVisible ? 'game-button__cover--hidden' : ''
+        className={`${styles['game-button__cover']} ${
+          props.isVisible ? styles['game-button__cover--hidden'] : ''
         }`}
       ></div>
       <div
-        className={`game-button__content  ${
-          props.isActive ? 'game-button__content--active' : ''
+        className={`${styles['game-button__content']}  ${
+          props.isVisible ? styles['game-button__cover--active'] : ''
         }`}
       >
         {props.children}

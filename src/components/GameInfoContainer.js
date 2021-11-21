@@ -1,7 +1,8 @@
-import BottomTab from './BottomTab';
+import GameInfo from './GameInfo';
 import { useSelector } from 'react-redux';
+import styles from '../styles/GameInfoContainer.module.css';
 
-const BottomTabsContainer = () => {
+const GameInfoContainer = () => {
   const minutesElapsed = useSelector((state) => state.game.minutesElapsed);
   const secondsElapsed = useSelector((state) => state.game.secondsElapsed);
   const moves = useSelector((state) => state.game.moves);
@@ -9,40 +10,39 @@ const BottomTabsContainer = () => {
   const activePlayerIndex = useSelector(
     (state) => state.game.activePlayerIndex
   );
-  const tabElements = [];
+  const gameInfoElements = [];
 
-  const generateBottomTabs = () => {
+  const generateGameInfos = () => {
     if (numOfPlayers === 1) {
-      tabElements.push(
-        <BottomTab
+      gameInfoElements.push(
+        <GameInfo
           key={1}
           value={`${minutesElapsed}:${secondsElapsed
             .toString()
             .padStart(2, '0')}`}
-        >{`Time`}</BottomTab>
+        >{`Time`}</GameInfo>
       );
-      tabElements.push(
-        <BottomTab
-          key={2}
-          value={moves[activePlayerIndex]}
-        >{`Moves`}</BottomTab>
+      gameInfoElements.push(
+        <GameInfo key={2} value={moves[activePlayerIndex]}>{`Moves`}</GameInfo>
       );
     } else {
       for (let i = 0; i < numOfPlayers; i++) {
-        tabElements.push(
-          <BottomTab
+        gameInfoElements.push(
+          <GameInfo
             isActive={activePlayerIndex === i}
             key={i}
             value={moves[i]}
-          >{`Player ${i + 1}`}</BottomTab>
+          >{`Player ${i + 1}`}</GameInfo>
         );
       }
     }
   };
 
-  generateBottomTabs();
+  generateGameInfos();
 
-  return <div className='bottom-tabs-container'>{tabElements}</div>;
+  return (
+    <div className={styles['game-info-container']}>{gameInfoElements}</div>
+  );
 };
 
-export default BottomTabsContainer;
+export default GameInfoContainer;

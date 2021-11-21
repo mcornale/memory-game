@@ -1,3 +1,4 @@
+import styles from '../styles/GameGrid.module.css';
 import GameButton from './GameButton';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -96,8 +97,10 @@ const GameGrid = () => {
 
   return (
     <div
-      className={`game-grid game-grid-${
-        gridSize === GAME_GRID_SIZES['4x4'] ? '4x4' : '6x6'
+      className={`${styles['game-grid']} ${
+        styles[
+          `game-grid--${gridSize === GAME_GRID_SIZES['4x4'] ? '4x4' : '6x6'}`
+        ]
       }`}
     >
       {gridElements}
