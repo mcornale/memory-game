@@ -1,6 +1,23 @@
 .game-info-container {
   display: flex;
   gap: 3rem;
-  justify-content: center;
   width: 100%;
+}
+
+.game-info-container--vertical {
+  flex-direction: column;
+}
+
+.game-info-container--horizontal {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.game-info-container--vertical > * {
+  flex: 1 1 100%;
+}
+
+.game-info-container--horizontal > * {
+  flex: 1 1 25%;
+  max-width: 30rem;
 }

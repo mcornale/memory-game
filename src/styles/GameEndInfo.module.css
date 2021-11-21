@@ -1,0 +1,20 @@
+.game-end-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  text-align: center;
+}
+
+.game-end-info__title {
+  color: var(--color-tangaroa);
+  margin-bottom: 2rem;
+}
+
+.game-end-info__buttons {
+  display: flex;
+  gap: 2rem;
+}
+
+.game-end-info__buttons > * {
+  flex: 1 1 50%;
+}

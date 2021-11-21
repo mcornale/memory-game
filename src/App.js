@@ -55,7 +55,7 @@ function App() {
       )}
       <Header />
       <GameGrid />
-      <GameInfoContainer />
+      <GameInfoContainer layout='horizontal' />
     </>
   );
 }

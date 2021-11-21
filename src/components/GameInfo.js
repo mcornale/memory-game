@@ -8,7 +8,9 @@ const GameInfo = (props) => {
       }`}
     >
       <p>{props.children}</p>
-      <h2 className={`${styles['game-info__title']}`}>{props.value}</h2>
+      <h2 className={`${styles['game-info__title']}`}>
+        {props.value} {props.showMovesString ? 'Moves' : ''}
+      </h2>
     </div>
   );
 };

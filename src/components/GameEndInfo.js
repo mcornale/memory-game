@@ -1,3 +1,5 @@
+import styles from '../styles/GameEndInfo.module.css';
+
 import GameInfoContainer from './GameInfoContainer';
 import RestartGameButton from './RestartGameButton';
 import StartNewGameButton from './StartNewGameButton';
@@ -16,11 +18,13 @@ const GameEndInfo = () => {
   };
 
   return (
-    <div>
-      <h1>You did it</h1>
-      <p>Here's how you got on</p>
-      <GameInfoContainer />
+    <div className={styles['game-end-info']}>
       <div>
+        <h1 className={styles['game-end-info__title']}>You did it!</h1>
+        <p>Game Over! Here's how you got on...</p>
+      </div>
+      <GameInfoContainer layout='vertical' gameEnd />
+      <div className={styles['game-end-info__buttons']}>
         <RestartGameButton type='primary'>Restart</RestartGameButton>
         <StartNewGameButton
           onStartNewGame={startNewGameHandler}
