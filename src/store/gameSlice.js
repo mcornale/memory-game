@@ -59,12 +59,9 @@ const gameSlice = createSlice({
       }
     },
     handleClickGameElement: (state, action) => {
-    
       const { payload: gameElement } = action;
-      state.gameElements[gameElement.index].isVisible =
-        true;
-      state.gameElements[gameElement.index].isActive =
-        true;
+      state.gameElements[gameElement.index].isVisible = true;
+      state.gameElements[gameElement.index].isActive = true;
 
       state.lastTwoMoves.push(gameElement);
     },
@@ -73,8 +70,6 @@ const gameSlice = createSlice({
       gameElementsToHide.forEach((gameElementToHide) => {
         state.gameElements[gameElementToHide.index].isVisible = false;
       });
-      state.moves[state.activePlayerIndex] += 1;
-      
     },
     disableElementsActiveState: (state, action) => {
       const { payload: gameElementsToChangeActiveState } = action;
@@ -104,6 +99,7 @@ const gameSlice = createSlice({
       state.isGameFinished = true;
     },
     resetLastTwoMoves: (state) => {
+      state.moves[state.activePlayerIndex] += 1;
       state.lastTwoMoves = [];
     },
   },
