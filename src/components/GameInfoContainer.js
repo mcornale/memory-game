@@ -1,6 +1,7 @@
+import styles from '../styles/GameInfoContainer.module.css';
+
 import GameInfo from './GameInfo';
 import { useSelector } from 'react-redux';
-import styles from '../styles/GameInfoContainer.module.css';
 
 const GameInfoContainer = () => {
   const minutesElapsed = useSelector((state) => state.game.minutesElapsed);

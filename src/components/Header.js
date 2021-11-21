@@ -1,9 +1,10 @@
+import styles from '../styles/Header.module.css';
+
 import Logo from './Logo';
+import Button from './Button';
 import { useDispatch } from 'react-redux';
 import { toggleModalVisibility } from '../store/modalMenuSlice';
-import Button from './Button';
 import { startNewGame } from '../store/gameSlice';
-import styles from '../styles/Header.module.css';
 
 const Header = () => {
   const dispatch = useDispatch();

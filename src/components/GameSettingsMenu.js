@@ -1,11 +1,12 @@
-import Button from './Button';
+import styles from '../styles/GameSettingsMenu.module.css';
+
 import { MAX_NUM_OF_PLAYERS, GAME_GRID_SIZES, GAME_THEMES } from '../constants';
+import Button from './Button';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSettings, startNewGame } from '../store/gameSlice';
 import { toggleModalVisibility } from '../store/modalMenuSlice';
 import firstCapitalLetter from '../helpers/firstCapitalLetter';
-import { useState } from 'react';
-import styles from '../styles/GameSettingsMenu.module.css';
 
 const GameSettingsMenu = () => {
   const [gridSize, setGridSize] = useState(

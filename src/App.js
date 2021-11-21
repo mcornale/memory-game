@@ -4,11 +4,11 @@ import Modal from './components/Modal';
 import Backdrop from './components/Backdrop';
 import Logo from './components/Logo';
 import GameSettingsMenu from './components/GameSettingsMenu';
+import ModalWindow from './components/ModalWindow';
+import GameInfoContainer from './components/GameInfoContainer';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { generateGameElements, updateTimer } from './store/gameSlice';
-import ModalWindow from './components/ModalWindow';
-import GameInfoContainer from './components/GameInfoContainer';
 
 function App() {
   const isModalVisible = useSelector((state) => state.modalMenu.isVisible);

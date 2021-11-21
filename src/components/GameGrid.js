@@ -1,5 +1,7 @@
 import styles from '../styles/GameGrid.module.css';
+
 import GameButton from './GameButton';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   handleClickGameElement,
@@ -9,9 +11,8 @@ import {
   resetLastTwoMoves,
   disableElementsActiveState,
 } from '../store/gameSlice';
-import { GAME_GRID_SIZES, GAME_THEMES, ICONS_ARR } from '../constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useRef } from 'react';
+import { GAME_GRID_SIZES, GAME_THEMES, ICONS_ARR } from '../constants';
 
 const GameGrid = () => {
   const gridSize = useSelector((state) => state.game.gridSize);
