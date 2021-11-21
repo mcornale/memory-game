@@ -6,7 +6,7 @@ import {
   changePlayerTurn,
   setGameFinished,
   resetLastTwoMoves,
-  disableElementsActiveState
+  disableElementsActiveState,
 } from '../store/gameSlice';
 import { GAME_GRID_SIZES, GAME_THEMES, ICONS_ARR } from '../constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +26,7 @@ const GameGrid = () => {
     let timeout;
     if (lastTwoMoves.length === 2) {
       timeout = setTimeout(() => {
-      if (lastTwoMoves[0].value !== lastTwoMoves[1].value) {
+        if (lastTwoMoves[0].value !== lastTwoMoves[1].value) {
           dispatch(
             hideGameElementsVisibility([lastTwoMoves[0], lastTwoMoves[1]])
           );
@@ -35,22 +35,20 @@ const GameGrid = () => {
           );
           dispatch(resetLastTwoMoves());
           if (numOfPlayers > 1) dispatch(changePlayerTurn());
-        
-      } else {
-        dispatch(
+        } else {
+          dispatch(
             disableElementsActiveState([lastTwoMoves[0], lastTwoMoves[1]])
           );
-        dispatch(resetLastTwoMoves());
-      }
-      }, 1000);
-    }
-  
+          dispatch(resetLastTwoMoves());
+        }
 
-    if (
-      gameElements.length > 0 &&
-      gameElements.every((gameElement) => gameElement.isVisible)
-    ) {
-      dispatch(setGameFinished());
+        if (
+          gameElements.length > 0 &&
+          gameElements.every((gameElement) => gameElement.isVisible)
+        ) {
+          dispatch(setGameFinished());
+        }
+      }, 1000);
     }
 
     return () => {
