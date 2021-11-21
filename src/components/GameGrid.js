@@ -1,14 +1,16 @@
 import GameButton from './GameButton';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  updateLastTwoMoves,
   handleClickGameElement,
   hideGameElementsVisibility,
-  disableElementsActiveState,
   changePlayerTurn,
+  setGameFinished,
+  resetLastTwoMoves,
+  disableElementsActiveState
 } from '../store/gameSlice';
 import { GAME_GRID_SIZES, GAME_THEMES, ICONS_ARR } from '../constants';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useRef } from 'react';
 
 const GameGrid = () => {
   const gridSize = useSelector((state) => state.game.gridSize);
@@ -17,27 +19,66 @@ const GameGrid = () => {
   const lastTwoMoves = useSelector((state) => state.game.lastTwoMoves);
   const numOfPlayers = useSelector((state) => state.game.numOfPlayers);
   const gridElements = [];
-
+  let canPlay = useRef();
   const dispatch = useDispatch();
 
-  const onMoveMadeHandler = (gameElement) => {
-    dispatch(updateLastTwoMoves(gameElement));
-    dispatch(handleClickGameElement(gameElement));
-
+  useEffect(() => {
+    let timeout;
     if (lastTwoMoves.length === 2) {
-      dispatch(disableElementsActiveState([lastTwoMoves[0], lastTwoMoves[1]]));
+      timeout = setTimeout(() => {
       if (lastTwoMoves[0].value !== lastTwoMoves[1].value) {
+          dispatch(
+            hideGameElementsVisibility([lastTwoMoves[0], lastTwoMoves[1]])
+          );
+          dispatch(
+            disableElementsActiveState([lastTwoMoves[0], lastTwoMoves[1]])
+          );
+          dispatch(resetLastTwoMoves());
+          if (numOfPlayers > 1) dispatch(changePlayerTurn());
+        
+      } else {
         dispatch(
-          hideGameElementsVisibility([lastTwoMoves[0], lastTwoMoves[1]])
-        );
-        if (numOfPlayers > 1) dispatch(changePlayerTurn());
+            disableElementsActiveState([lastTwoMoves[0], lastTwoMoves[1]])
+          );
+        dispatch(resetLastTwoMoves());
       }
+      }, 1000);
     }
+  
+
+    if (
+      gameElements.length > 0 &&
+      gameElements.every((gameElement) => gameElement.isVisible)
+    ) {
+      dispatch(setGameFinished());
+    }
+
+    return () => {
+      if (lastTwoMoves.length === 2 && timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [gameElements, lastTwoMoves, numOfPlayers, dispatch]);
+
+  useEffect(() => {
+    canPlay.current = true;
+  });
+
+  useEffect(() => {
+    if (lastTwoMoves.length === 2) {
+      canPlay.current = false;
+    }
+  }, [lastTwoMoves]);
+
+  const onMoveMadeHandler = (gameElement) => {
+    if (!canPlay.current) return;
+    dispatch(handleClickGameElement(gameElement));
   };
 
   gameElements.forEach((gameElement, index) => {
     gridElements.push(
       <GameButton
+        canPlay={canPlay.current}
         isVisible={gameElement.isVisible}
         isActive={gameElement.isActive}
         onMoveMade={onMoveMadeHandler.bind(null, {

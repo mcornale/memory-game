@@ -58,27 +58,23 @@ const gameSlice = createSlice({
         state.secondsElapsed += 1;
       }
     },
-    updateLastTwoMoves: (state, action) => {
-      if (state.lastTwoMoves.length === 2) {
-        state.lastTwoMoves = [];
-      }
-      state.lastTwoMoves.push(action.payload);
-    },
     handleClickGameElement: (state, action) => {
-      if (state.lastTwoMoves.length === 2)
-        state.moves[state.activePlayerIndex] += 1;
-
+    
       const { payload: gameElement } = action;
       state.gameElements[gameElement.index].isVisible =
-        !state.gameElements[gameElement.index].isVisible;
+        true;
       state.gameElements[gameElement.index].isActive =
-        !state.gameElements[gameElement.index].isActive;
+        true;
+
+      state.lastTwoMoves.push(gameElement);
     },
     hideGameElementsVisibility: (state, action) => {
       const { payload: gameElementsToHide } = action;
       gameElementsToHide.forEach((gameElementToHide) => {
         state.gameElements[gameElementToHide.index].isVisible = false;
       });
+      state.moves[state.activePlayerIndex] += 1;
+      
     },
     disableElementsActiveState: (state, action) => {
       const { payload: gameElementsToChangeActiveState } = action;
@@ -94,6 +90,7 @@ const gameSlice = createSlice({
       state.lastTwoMoves = [];
       state.moves = [];
       state.activePlayerIndex = 0;
+
       state.gameStarted += 1;
 
       for (let i = 0; i < state.numOfPlayers; i++) state.moves[i] = 0;
@@ -106,6 +103,9 @@ const gameSlice = createSlice({
     setGameFinished: (state) => {
       state.isGameFinished = true;
     },
+    resetLastTwoMoves: (state) => {
+      state.lastTwoMoves = [];
+    },
   },
 });
 
@@ -114,12 +114,12 @@ export const {
   generateGameElements,
   restartGame,
   updateTimer,
-  updateLastTwoMoves,
   handleClickGameElement,
   hideGameElementsVisibility,
   disableElementsActiveState,
   startNewGame,
   changePlayerTurn,
   setGameFinished,
+  resetLastTwoMoves,
 } = gameSlice.actions;
 export default gameSlice.reducer;
