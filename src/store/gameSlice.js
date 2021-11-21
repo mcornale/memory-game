@@ -19,7 +19,7 @@ const gameSlice = createSlice({
   name: 'gameSlice',
   initialState,
   reducers: {
-    setSettings: (state, action) => {
+    setGameSettings: (state, action) => {
       state.gridSize = action.payload.gridSize;
       state.gridTheme = action.payload.gridTheme;
       state.numOfPlayers = action.payload.numOfPlayers;
@@ -106,7 +106,7 @@ const gameSlice = createSlice({
 });
 
 export const {
-  setSettings,
+  setGameSettings,
   generateGameElements,
   restartGame,
   updateTimer,

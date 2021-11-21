@@ -2,10 +2,9 @@ import styles from '../styles/GameSettingsMenu.module.css';
 
 import { MAX_NUM_OF_PLAYERS, GAME_GRID_SIZES, GAME_THEMES } from '../constants';
 import Button from './Button';
+import StartNewGameButton from './StartNewGameButton';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSettings, startNewGame } from '../store/gameSlice';
-import { toggleModalVisibility } from '../store/modalMenuSlice';
+import { useSelector } from 'react-redux';
 import firstCapitalLetter from '../helpers/firstCapitalLetter';
 
 const GameSettingsMenu = () => {
@@ -18,8 +17,6 @@ const GameSettingsMenu = () => {
   const [gridTheme, setGridTheme] = useState(
     useSelector((state) => state.game.gridTheme)
   );
-
-  const dispatch = useDispatch();
 
   const themeButtons = [];
   const numOfPlayersButtons = [];
@@ -37,12 +34,6 @@ const GameSettingsMenu = () => {
     setGridSize(newGridSize);
   };
 
-  const onNewGameHandler = () => {
-    dispatch(toggleModalVisibility());
-    dispatch(setSettings({ gridSize, numOfPlayers, gridTheme }));
-    dispatch(startNewGame());
-  };
-
   const generateThemeButtons = () => {
     for (const key in GAME_THEMES) {
       themeButtons.push(
@@ -50,7 +41,7 @@ const GameSettingsMenu = () => {
           onClick={onChangeThemeHandler.bind(null, GAME_THEMES[key])}
           key={key}
           type={`menu-selection${
-            GAME_THEMES[key] === gridTheme ? '-active' : ''
+            GAME_THEMES[key] === gridTheme ? '--active' : ''
           }`}
         >
           {firstCapitalLetter(GAME_THEMES[key])}
@@ -65,7 +56,7 @@ const GameSettingsMenu = () => {
         <Button
           onClick={onChangeNumOfPlayersHandler.bind(null, i + 1)}
           key={i}
-          type={`menu-selection${i + 1 === numOfPlayers ? '-active' : ''}`}
+          type={`menu-selection${i + 1 === numOfPlayers ? '--active' : ''}`}
         >
           {i + 1}
         </Button>
@@ -80,7 +71,7 @@ const GameSettingsMenu = () => {
           onClick={onChangeGridSizeHandler.bind(null, GAME_GRID_SIZES[key])}
           key={key}
           type={`menu-selection${
-            GAME_GRID_SIZES[key] === gridSize ? '-active' : ''
+            GAME_GRID_SIZES[key] === gridSize ? '--active' : ''
           }`}
         >
           {key}
@@ -109,9 +100,12 @@ const GameSettingsMenu = () => {
       <div className={styles['game-settings-menu__buttons']}>
         {gridSizeButtons}
       </div>
-      <Button onClick={onNewGameHandler} type='menu-start'>
+      <StartNewGameButton
+        settingsChoice={{ gridSize, numOfPlayers, gridTheme }}
+        type='menu-start'
+      >
         Start Game
-      </Button>
+      </StartNewGameButton>
     </div>
   );
 };

@@ -14,7 +14,7 @@
 }
 
 .button-menu-selection,
-.button-menu-selection-active {
+.button-menu-selection--active {
   font-size: 2.4rem;
   width: 100%;
   color: var(--color-snow);
@@ -28,7 +28,7 @@
   background-color: var(--color-shakespeare);
 }
 
-.button-menu-selection-active {
+.button-menu-selection--active {
   background-color: var(--color-arapawa);
 }
 

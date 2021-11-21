@@ -11,6 +11,7 @@ import {
   resetLastTwoMoves,
   disableElementsActiveState,
 } from '../store/gameSlice';
+import { toggleModalGameEndVisibility } from '../store/modalsSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GAME_GRID_SIZES, GAME_THEMES, ICONS_ARR } from '../constants';
 
@@ -49,6 +50,7 @@ const GameGrid = () => {
           gameElements.every((gameElement) => gameElement.isVisible)
         ) {
           dispatch(setGameFinished());
+          dispatch(toggleModalGameEndVisibility());
         }
       }, 1000);
     }

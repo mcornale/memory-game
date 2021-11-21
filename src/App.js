@@ -6,12 +6,18 @@ import Logo from './components/Logo';
 import GameSettingsMenu from './components/GameSettingsMenu';
 import ModalWindow from './components/ModalWindow';
 import GameInfoContainer from './components/GameInfoContainer';
+import GameEndInfo from './components/GameEndInfo';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { generateGameElements, updateTimer } from './store/gameSlice';
 
 function App() {
-  const isModalVisible = useSelector((state) => state.modalMenu.isVisible);
+  const isModalMenuSettingsVisible = useSelector(
+    (state) => state.modals.isModalMenuSettingsVisible
+  );
+  const isModalGameEndVisible = useSelector(
+    (state) => state.modals.isModalGameEndVisible
+  );
   const gameStarted = useSelector((state) => state.game.gameStarted);
   const isGameFinished = useSelector((state) => state.game.isGameFinished);
   const dispatch = useDispatch();
@@ -30,7 +36,7 @@ function App() {
 
   return (
     <>
-      {isModalVisible && (
+      {isModalMenuSettingsVisible && (
         <Modal>
           <Backdrop type='dark' />
           <Logo color='#fcfcfc' />
@@ -39,10 +45,12 @@ function App() {
           </ModalWindow>
         </Modal>
       )}
-      {isGameFinished && (
+      {isModalGameEndVisible && (
         <Modal>
           <Backdrop type='light' />
-          {/* <GameEndInfo /> */}
+          <ModalWindow>
+            <GameEndInfo />
+          </ModalWindow>
         </Modal>
       )}
       <Header />
