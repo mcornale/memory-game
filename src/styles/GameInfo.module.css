@@ -6,10 +6,11 @@
   align-items: center;
   justify-content: space-between;
   transition: all 0.3s;
+  color: var(--color-arapawa);
 }
 
 .game-info__title {
-  color: var(--color-arapawa);
+  color: inherit;
 }
 
 .game-info--active {
@@ -45,4 +46,9 @@
   text-align: center;
   letter-spacing: 0.5rem;
   font-size: 1.3rem;
+}
+
+.game-info--winner {
+  background-color: var(--color-arapawa);
+  color: var(--color-snow);
 }

@@ -19,10 +19,6 @@ const GameEndInfo = () => {
 
   return (
     <div className={styles['game-end-info']}>
-      <div>
-        <h1 className={styles['game-end-info__title']}>You did it!</h1>
-        <p>Game Over! Here's how you got on...</p>
-      </div>
       <GameInfoContainer layout='vertical' gameEnd />
       <div className={styles['game-end-info__buttons']}>
         <RestartGameButton type='primary'>Restart</RestartGameButton>

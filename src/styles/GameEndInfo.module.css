@@ -5,7 +5,7 @@
   text-align: center;
 }
 
-.game-end-info__title {
+.game-end-info h1 {
   color: var(--color-tangaroa);
   margin-bottom: 2rem;
 }

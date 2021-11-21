@@ -7,6 +7,7 @@ const GameInfoContainer = (props) => {
   const minutesElapsed = useSelector((state) => state.game.minutesElapsed);
   const secondsElapsed = useSelector((state) => state.game.secondsElapsed);
   const moves = useSelector((state) => state.game.moves);
+  const pairs = useSelector((state) => state.game.pairs);
   const numOfPlayers = useSelector((state) => state.game.numOfPlayers);
   const activePlayerIndex = useSelector(
     (state) => state.game.activePlayerIndex
@@ -34,25 +35,41 @@ const GameInfoContainer = (props) => {
       for (let i = 0; i < numOfPlayers; i++) {
         gameInfoElements.push(
           <GameInfo
-            isActive={activePlayerIndex === i}
+            {...(!props.gameEnd ? { isActive: activePlayerIndex === i } : {})}
             key={i}
-            value={moves[i]}
+            {...(props.gameEnd ? { showPairsString: true } : {})}
+            value={props.gameEnd ? pairs[i] : moves[i]}
+            isWinner={
+              pairs[i] === Math.max(...pairs) && Math.max(...pairs) !== 0
+            }
           >{`Player ${i + 1}`}</GameInfo>
         );
       }
+
+      if (props.gameEnd)
+        gameInfoElements.sort((a, b) => b.props.value - a.props.value);
     }
   };
 
   generateGameInfos();
 
   return (
-    <div
-      className={`${styles['game-info-container']} ${
-        styles[`game-info-container--${props.layout}`]
-      }`}
-    >
-      {gameInfoElements}
-    </div>
+    <>
+      {props.gameEnd && (
+        <div>
+          <h1>You did it!</h1>
+          <p>Game Over! Here's how you got on...</p>
+        </div>
+      )}
+
+      <div
+        className={`${styles['game-info-container']} ${
+          styles[`game-info-container--${props.layout}`]
+        }`}
+      >
+        {gameInfoElements}
+      </div>
+    </>
   );
 };
 

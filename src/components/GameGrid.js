@@ -10,6 +10,7 @@ import {
   setGameFinished,
   resetLastTwoMoves,
   disableElementsActiveState,
+  updatePairs,
 } from '../store/gameSlice';
 import { toggleModalGameEndVisibility } from '../store/modalsSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -43,6 +44,7 @@ const GameGrid = () => {
             disableElementsActiveState([lastTwoMoves[0], lastTwoMoves[1]])
           );
           dispatch(resetLastTwoMoves());
+          dispatch(updatePairs());
         }
 
         if (

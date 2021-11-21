@@ -6,6 +6,7 @@ const initialState = {
   minutesElapsed: 0,
   secondsElapsed: 0,
   moves: [],
+  pairs: [],
   lastTwoMoves: [],
   gameStarted: 0,
   gridTheme: GAME_THEMES.NUMBERS,
@@ -84,11 +85,13 @@ const gameSlice = createSlice({
       state.gameElements = [];
       state.lastTwoMoves = [];
       state.moves = [];
+      state.pairs = [];
       state.activePlayerIndex = 0;
 
       state.gameStarted += 1;
-
-      for (let i = 0; i < state.numOfPlayers; i++) state.moves[i] = 0;
+      for (let i = 0; i < state.numOfPlayers; i++) {
+        state.moves[i] = state.pairs[i] = 0;
+      }
     },
     changePlayerTurn: (state) => {
       if (state.activePlayerIndex + 1 === state.numOfPlayers)
@@ -101,6 +104,9 @@ const gameSlice = createSlice({
     resetLastTwoMoves: (state) => {
       state.moves[state.activePlayerIndex] += 1;
       state.lastTwoMoves = [];
+    },
+    updatePairs: (state) => {
+      state.pairs[state.activePlayerIndex] += 1;
     },
   },
 });
@@ -117,5 +123,6 @@ export const {
   changePlayerTurn,
   setGameFinished,
   resetLastTwoMoves,
+  updatePairs,
 } = gameSlice.actions;
 export default gameSlice.reducer;
