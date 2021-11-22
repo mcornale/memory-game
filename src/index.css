@@ -70,3 +70,15 @@ button {
   border-radius: 6rem;
   transition: all 0.3s;
 }
+
+@media screen and (max-width: 768px) {
+  #game {
+    padding: 4rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #game {
+    padding: 2rem;
+  }
+}

@@ -52,3 +52,27 @@
   background-color: var(--color-arapawa);
   color: var(--color-snow);
 }
+
+@media screen and (max-width: 768px) {
+  .game-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .game-info--winner,
+  .game-info--winner + * {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .game-info--active::after {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .game-info {
+    align-items: center;
+  }
+}

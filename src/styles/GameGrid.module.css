@@ -8,8 +8,8 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 2rem;
-  width: 53.2rem;
-  height: 53.2rem;
+  width: min(53.2rem, 85vw);
+  height: min(53.2rem, 85vw);
   font-size: 4.4rem;
 }
 
@@ -17,7 +17,25 @@
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
   gap: 1.6rem;
-  width: 57.2rem;
-  height: 57.2rem;
+  width: min(57.2rem, 85vw);
+  height: min(57.2rem, 85vw);
   font-size: 3.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .game-grid--4x4,
+  .game-grid--6x6 {
+    gap: 1.6rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .game-grid {
+    margin: 8rem auto;
+  }
+
+  .game-grid--4x4,
+  .game-grid--6x6 {
+    gap: 1rem;
+  }
 }
