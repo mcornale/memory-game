@@ -13,6 +13,8 @@ const GameInfoContainer = (props) => {
     (state) => state.game.activePlayerIndex
   );
   const gameInfoElements = [];
+  let gameEndTitle = '';
+  let gameEndSubtitle = '';
 
   const generateGameInfos = () => {
     if (numOfPlayers === 1) {
@@ -31,6 +33,11 @@ const GameInfoContainer = (props) => {
           {...(props.gameEnd ? { showMovesString: true } : {})}
         >{`Moves ${props.gameEnd ? 'Taken' : ''}`}</GameInfo>
       );
+
+      if (props.gameEnd) {
+        gameEndTitle = 'You did it!';
+        gameEndSubtitle = "Game over! Here's how you got on";
+      }
     } else {
       for (let i = 0; i < numOfPlayers; i++) {
         gameInfoElements.push(
@@ -39,15 +46,23 @@ const GameInfoContainer = (props) => {
             key={i}
             {...(props.gameEnd ? { showPairsString: true } : {})}
             value={props.gameEnd ? pairs[i] : moves[i]}
-            isWinner={
-              pairs[i] === Math.max(...pairs) && Math.max(...pairs) !== 0
-            }
+            isWinner={props.gameEnd && pairs[i] === Math.max(...pairs)}
           >{`Player ${i + 1}`}</GameInfo>
         );
       }
 
-      if (props.gameEnd)
+      if (props.gameEnd) {
         gameInfoElements.sort((a, b) => b.props.value - a.props.value);
+
+        const playerToWin = gameInfoElements.filter(
+          (gameInfoElement) => gameInfoElement.props.isWinner
+        );
+
+        if (playerToWin.length > 1) gameEndTitle = "It's a tie!";
+        else gameEndTitle = `${playerToWin[0].props.children} Wins!`;
+
+        gameEndSubtitle = 'Game over! Here are the results';
+      }
     }
   };
 
@@ -57,8 +72,8 @@ const GameInfoContainer = (props) => {
     <>
       {props.gameEnd && (
         <div>
-          <h1>You did it!</h1>
-          <p>Game Over! Here's how you got on...</p>
+          <h1>{gameEndTitle}</h1>
+          <p>{gameEndSubtitle}</p>
         </div>
       )}
 

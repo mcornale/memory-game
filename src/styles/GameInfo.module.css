@@ -6,11 +6,10 @@
   align-items: center;
   justify-content: space-between;
   transition: all 0.3s;
-  color: var(--color-arapawa);
 }
 
 .game-info__title {
-  color: inherit;
+  color: var(--color-arapawa);
 }
 
 .game-info--active {
@@ -19,7 +18,8 @@
   position: relative;
 }
 
-.game-info--active .game-info__title {
+.game-info--active .game-info__title,
+.game-info--winner .game-info__title {
   color: var(--color-snow);
 }
 
