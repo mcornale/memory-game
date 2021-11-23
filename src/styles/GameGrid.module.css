@@ -8,23 +8,25 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 2rem;
-  width: min(53.2rem, 85vw);
-  height: min(53.2rem, 85vw);
-  font-size: 4.4rem;
+  width: 53.2rem;
+  height: 53.2rem;
+  font-size: var(--font-size-number-4x4);
 }
 
 .game-grid--6x6 {
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(6, 1fr);
   gap: 1.6rem;
-  width: min(57.2rem, 85vw);
-  height: min(57.2rem, 85vw);
-  font-size: 3.2rem;
+  width: 57.2rem;
+  height: 57.2rem;
+  font-size: var(--font-size-number-6x6);
 }
 
 @media screen and (max-width: 768px) {
   .game-grid--4x4,
   .game-grid--6x6 {
+    width: 80vw;
+    height: 80vw;
     gap: 1.6rem;
   }
 }
@@ -36,6 +38,15 @@
 
   .game-grid--4x4,
   .game-grid--6x6 {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .game-grid--4x4 {
     gap: 1rem;
+  }
+
+  .game-grid--6x6 {
+    gap: 0.6rem;
   }
 }

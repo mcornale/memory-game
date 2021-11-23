@@ -21,3 +21,15 @@
   flex: 1 1 25%;
   max-width: 30rem;
 }
+
+@media screen and (max-width: 768px) {
+  .game-info-container {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .game-info-container {
+    gap: 1rem;
+  }
+}
