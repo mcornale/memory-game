@@ -59,7 +59,7 @@
 
 @media screen and (max-width: 768px) {
   .game-info {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     gap: 0.6rem;
   }
@@ -72,12 +72,6 @@
 
   .game-info--active::after {
     display: none;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .game-info {
-    align-items: center;
   }
 
   .game-info__player--short {
@@ -96,5 +90,11 @@
   .game-info--winner .game-info__player--short,
   .game-info--winner ~ * .game-info__player--short {
     display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .game-info {
+    align-items: center;
   }
 }
