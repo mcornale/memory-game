@@ -88,14 +88,12 @@
     display: none;
   }
 
-  .game-info__player--short {
-    display: inline-block;
-  }
-
+  .game-info--winner .game-info__player--long,
   .game-info--winner ~ * .game-info__player--long {
     display: inline-block;
   }
 
+  .game-info--winner .game-info__player--short,
   .game-info--winner ~ * .game-info__player--short {
     display: none;
   }
