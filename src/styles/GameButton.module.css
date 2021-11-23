@@ -21,10 +21,6 @@
   transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
 }
 
-.game-button__cover:hover {
-  background-color: var(--color-shakespeare);
-}
-
 .game-button__cover--hidden {
   transform: scale(0);
 }
@@ -39,4 +35,10 @@
 
 .game-button__content--active {
   background-color: var(--color-dark-tangerine);
+}
+
+@media (hover: hover) {
+  .game-button__cover:hover {
+    background-color: var(--color-shakespeare);
+  }
 }
