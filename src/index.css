@@ -19,6 +19,7 @@
   --font-size-button: 2rem;
   --font-size-button-big: 3rem;
   --font-size-button-menu: 2.4rem;
+  --font-size-p: 1.8rem;
 }
 
 *,
@@ -35,7 +36,7 @@ html {
 
 body {
   font-family: 'Atkinson Hyperlegible', sans-serif;
-  font-size: 1.8rem;
+  font-size: var(--font-size-p);
   font-weight: 700;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -76,7 +77,7 @@ button {
 
 @media screen and (max-width: 768px) {
   :root {
-    --font-size-h1: 4.6rem;
+    --font-size-h1: 4.4rem;
     --font-size-h2: 3rem;
     --font-size-h3: 1.8rem;
     --font-size-number-4x4: 4.2rem;
@@ -93,14 +94,15 @@ button {
 
 @media screen and (max-width: 500px) {
   :root {
-    --font-size-h1: 4.4rem;
-    --font-size-h2: 2.8rem;
+    --font-size-h1: 4rem;
+    --font-size-h2: 2.4rem;
     --font-size-h3: 1.8rem;
     --font-size-number-4x4: 3.4rem;
     --font-size-number-6x6: 2.4rem;
     --font-size-button: 1.8rem;
     --font-size-button-big: 2.4rem;
     --font-size-button-menu: 1.8rem;
+    --font-size-p: 1.6rem;
   }
 
   #game {

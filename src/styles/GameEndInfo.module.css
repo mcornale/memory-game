@@ -18,3 +18,10 @@
 .game-end-info__buttons > * {
   flex: 1 1 50%;
 }
+
+@media screen and (max-width: 500px) {
+  .game-end-info__buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
