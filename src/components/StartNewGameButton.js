@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   toggleModalGameEndVisibility,
   toggleModalMenuSettigsVisibility,
+  toggleModalMenuVisibility,
 } from '../store/modalsSlice';
 import { setGameSettings, startNewGame } from '../store/gameSlice';
 
@@ -14,9 +15,13 @@ const StartNewGameButton = (props) => {
   const isModalMenuSettingsVisible = useSelector(
     (state) => state.modals.isModalMenuSettingsVisible
   );
+  const isModalMenuVisible = useSelector(
+    (state) => state.modals.isModalMenuVisible
+  );
 
   const startNewGameHandler = () => {
     if (isModalGameEndVisible) dispatch(toggleModalGameEndVisibility());
+    if (isModalMenuVisible) dispatch(toggleModalMenuVisibility());
 
     if (isModalMenuSettingsVisible) {
       dispatch(setGameSettings(props.settingsChoice));

@@ -10,6 +10,9 @@ import GameEndInfo from './components/GameEndInfo';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { generateGameElements, updateTimer } from './store/gameSlice';
+import RestartGameButton from './components/RestartGameButton';
+import StartNewGameButton from './components/StartNewGameButton';
+import OpenCloseMenuButton from './components/OpenCloseMenuButton';
 
 function App() {
   const isModalMenuSettingsVisible = useSelector(
@@ -18,12 +21,15 @@ function App() {
   const isModalGameEndVisible = useSelector(
     (state) => state.modals.isModalGameEndVisible
   );
+  const isModalMenuVisible = useSelector(
+    (state) => state.modals.isModalMenuVisible
+  );
   const gameStarted = useSelector((state) => state.game.gameStarted);
   const isGameFinished = useSelector((state) => state.game.isGameFinished);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isGameFinished) return;
+    if (isGameFinished || isModalMenuVisible) return;
 
     dispatch(generateGameElements());
     const timer = setInterval(() => {
@@ -32,7 +38,7 @@ function App() {
     return () => {
       clearTimeout(timer);
     };
-  }, [gameStarted, isGameFinished, dispatch]);
+  }, [gameStarted, isGameFinished, isModalMenuVisible, dispatch]);
 
   return (
     <>
@@ -50,6 +56,18 @@ function App() {
           <Backdrop type='light' />
           <ModalWindow>
             <GameEndInfo />
+          </ModalWindow>
+        </Modal>
+      )}
+      {isModalMenuVisible && (
+        <Modal>
+          <Backdrop type='light' />
+          <ModalWindow>
+            <RestartGameButton type='primary'>Restart</RestartGameButton>
+            <StartNewGameButton type='secondary'>New Game</StartNewGameButton>
+            <OpenCloseMenuButton type='secondary'>
+              Resume Game
+            </OpenCloseMenuButton>
           </ModalWindow>
         </Modal>
       )}

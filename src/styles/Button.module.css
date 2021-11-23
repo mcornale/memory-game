@@ -52,3 +52,17 @@
   color: var(--color-snow);
   background-color: var(--color-shakespeare);
 }
+
+.button-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .button-mobile {
+    display: block;
+  }
+
+  .button-mobile ~ * {
+    display: none;
+  }
+}

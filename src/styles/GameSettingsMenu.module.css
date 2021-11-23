@@ -11,3 +11,9 @@
   gap: 2rem;
   margin-bottom: 3.4rem;
 }
+
+@media screen and (max-width: 500px) {
+  .game-settings-menu__buttons {
+    gap: 1rem;
+  }
+}

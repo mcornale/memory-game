@@ -4,7 +4,9 @@ const Button = (props) => {
   return (
     <button
       onClick={props.onClick}
-      className={`${styles.button} ${styles[`button-${props.type}`]}`}
+      className={`${styles.button} ${styles[`button-${props.type}`]} ${
+        props.showOnlyOn ? styles[`button-${props.showOnlyOn}`] : ''
+      }`}
     >
       {props.children}
     </button>

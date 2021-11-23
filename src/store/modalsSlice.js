@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isModalMenuSettingsVisible: true,
   isModalGameEndVisible: false,
+  isModalMenuVisible: false,
 };
 
 const modalsSlice = createSlice({
@@ -15,11 +16,15 @@ const modalsSlice = createSlice({
     toggleModalGameEndVisibility: (state) => {
       state.isModalGameEndVisible = !state.isModalGameEndVisible;
     },
+    toggleModalMenuVisibility: (state) => {
+      state.isModalMenuVisible = !state.isModalMenuVisible;
+    },
   },
 });
 
 export const {
   toggleModalMenuSettigsVisibility,
   toggleModalGameEndVisibility,
+  toggleModalMenuVisibility,
 } = modalsSlice.actions;
 export default modalsSlice.reducer;

@@ -4,4 +4,13 @@
   padding: 4rem;
   width: min(65.4rem, 90%);
   margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 500px) {
+  .modal-window {
+    padding: 2.8rem;
+  }
 }
