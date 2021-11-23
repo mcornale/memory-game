@@ -7,6 +7,7 @@ const GameInfo = (props) => {
         styles[`${props.isActive ? 'game-info--active' : ''}`]
       } ${styles[`${props.isWinner ? 'game-info--winner' : ''}`]}`}
     >
+      <p>{props.textOnMobile}</p>
       <p>
         {props.children} {props.isWinner ? '(Winner)' : ''}
       </p>

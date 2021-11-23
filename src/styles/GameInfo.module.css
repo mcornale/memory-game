@@ -53,6 +53,10 @@
   color: var(--color-snow);
 }
 
+.game-info p:first-child {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .game-info {
     flex-direction: column;
@@ -74,5 +78,13 @@
 @media screen and (max-width: 500px) {
   .game-info {
     align-items: center;
+  }
+
+  .game-info p:first-child {
+    display: block;
+  }
+
+  .game-info p:not(:first-child) {
+    display: none;
   }
 }
