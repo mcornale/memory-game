@@ -47,7 +47,7 @@ const GameInfoContainer = (props) => {
             {...(props.gameEnd ? { showPairsString: true } : {})}
             value={props.gameEnd ? pairs[i] : moves[i]}
             isWinner={props.gameEnd && pairs[i] === Math.max(...pairs)}
-            textOnMobile={`P${i + 1}`}
+            playerShortText={`P${i + 1}`}
           >{`Player ${i + 1}`}</GameInfo>
         );
       }

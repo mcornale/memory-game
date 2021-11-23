@@ -53,7 +53,7 @@
   color: var(--color-snow);
 }
 
-.game-info p:first-child {
+.game-info__player--short {
   display: none;
 }
 
@@ -65,7 +65,7 @@
   }
 
   .game-info--winner,
-  .game-info--winner + * {
+  .game-info--winner ~ * {
     flex-direction: row;
     align-items: center;
   }
@@ -80,11 +80,23 @@
     align-items: center;
   }
 
-  .game-info p:first-child {
-    display: block;
+  .game-info__player--short {
+    display: inline-block;
   }
 
-  .game-info p:not(:first-child) {
+  .game-info__player--long {
+    display: none;
+  }
+
+  .game-info__player--short {
+    display: inline-block;
+  }
+
+  .game-info--winner ~ * .game-info__player--long {
+    display: inline-block;
+  }
+
+  .game-info--winner ~ * .game-info__player--short {
     display: none;
   }
 }

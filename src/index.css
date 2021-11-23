@@ -94,7 +94,7 @@ button {
 
 @media screen and (max-width: 500px) {
   :root {
-    --font-size-h1: 4rem;
+    --font-size-h1: 3.6rem;
     --font-size-h2: 2.4rem;
     --font-size-h3: 1.8rem;
     --font-size-number-4x4: 3.4rem;
