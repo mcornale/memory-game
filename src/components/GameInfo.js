@@ -8,7 +8,13 @@ const GameInfo = (props) => {
       } ${styles[`${props.isWinner ? 'game-info--winner' : ''}`]}`}
     >
       <p>
-        <span className={`${styles['game-info__player--long']}`}>
+        <span
+          className={
+            props.children.startsWith('Player')
+              ? `${styles['game-info__player--long']}`
+              : ''
+          }
+        >
           {props.children}
         </span>
         {props.playerShortText && (
