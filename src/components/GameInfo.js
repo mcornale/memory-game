@@ -27,7 +27,12 @@ const GameInfo = (props) => {
 
       <h2 className={`${styles['game-info__title']}`}>
         {props.value} {props.showMovesString ? 'Moves' : ''}{' '}
-        {props.showPairsString ? 'Pairs' : ''}{' '}
+        {props.showPairsString
+          ? (() => {
+              if (props.value > 1) return 'Pairs';
+              else return 'Pair';
+            })()
+          : ''}
       </h2>
     </div>
   );
