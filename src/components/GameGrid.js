@@ -1,7 +1,7 @@
 import styles from '../styles/GameGrid.module.css';
 
 import GameButton from './GameButton';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   handleClickGameElement,
@@ -22,13 +22,13 @@ const GameGrid = () => {
   const gameElements = useSelector((state) => state.game.gameElements);
   const lastTwoMoves = useSelector((state) => state.game.lastTwoMoves);
   const numOfPlayers = useSelector((state) => state.game.numOfPlayers);
-  const gridElements = [];
-  let canPlay = useRef();
   const dispatch = useDispatch();
+
+  const canPlay = lastTwoMoves.length !== 2;
 
   useEffect(() => {
     let timeout;
-    if (lastTwoMoves.length === 2) {
+    if (!canPlay) {
       timeout = setTimeout(() => {
         if (lastTwoMoves[0].value !== lastTwoMoves[1].value) {
           dispatch(
@@ -58,47 +58,46 @@ const GameGrid = () => {
     }
 
     return () => {
-      if (lastTwoMoves.length === 2 && timeout) {
+      if (!canPlay && timeout) {
         clearTimeout(timeout);
       }
     };
-  }, [gameElements, lastTwoMoves, numOfPlayers, dispatch]);
+  }, [gameElements, lastTwoMoves, numOfPlayers, canPlay, dispatch]);
 
-  useEffect(() => {
-    canPlay.current = true;
-  });
+  const onMoveMadeHandler = useCallback(
+    (gameElement) => {
+      if (!canPlay) return;
+      dispatch(handleClickGameElement(gameElement));
+    },
+    [dispatch, canPlay]
+  );
 
-  useEffect(() => {
-    if (lastTwoMoves.length === 2) {
-      canPlay.current = false;
-    }
-  }, [lastTwoMoves]);
+  const generateGridElements = useMemo(() => {
+    const gridElements = [];
 
-  const onMoveMadeHandler = (gameElement) => {
-    if (!canPlay.current) return;
-    dispatch(handleClickGameElement(gameElement));
-  };
+    gameElements.forEach((gameElement, index) => {
+      gridElements.push(
+        <GameButton
+          canPlay={canPlay}
+          isVisible={gameElement.isVisible}
+          isActive={gameElement.isActive}
+          onMoveMade={onMoveMadeHandler.bind(null, {
+            value: gameElement.value,
+            index,
+          })}
+          key={index}
+        >
+          {gridTheme === GAME_THEMES.NUMBERS ? (
+            gameElement.value
+          ) : (
+            <FontAwesomeIcon icon={ICONS_ARR[gameElement.value - 1]} />
+          )}
+        </GameButton>
+      );
+    });
 
-  gameElements.forEach((gameElement, index) => {
-    gridElements.push(
-      <GameButton
-        canPlay={canPlay.current}
-        isVisible={gameElement.isVisible}
-        isActive={gameElement.isActive}
-        onMoveMade={onMoveMadeHandler.bind(null, {
-          value: gameElement.value,
-          index,
-        })}
-        key={index}
-      >
-        {gridTheme === GAME_THEMES.NUMBERS ? (
-          gameElement.value
-        ) : (
-          <FontAwesomeIcon icon={ICONS_ARR[gameElement.value - 1]} />
-        )}
-      </GameButton>
-    );
-  });
+    return gridElements;
+  }, [gameElements, gridTheme, onMoveMadeHandler, canPlay]);
 
   return (
     <div
@@ -108,7 +107,7 @@ const GameGrid = () => {
         ]
       }`}
     >
-      {gridElements}
+      {generateGridElements}
     </div>
   );
 };

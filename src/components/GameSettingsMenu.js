@@ -3,7 +3,7 @@ import styles from '../styles/GameSettingsMenu.module.css';
 import { MAX_NUM_OF_PLAYERS, GAME_GRID_SIZES, GAME_THEMES } from '../constants';
 import Button from './Button';
 import StartNewGameButton from './StartNewGameButton';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import firstCapitalLetter from '../helpers/firstCapitalLetter';
 
@@ -18,10 +18,6 @@ const GameSettingsMenu = () => {
     useSelector((state) => state.game.gridTheme)
   );
 
-  const themeButtons = [];
-  const numOfPlayersButtons = [];
-  const gridSizeButtons = [];
-
   const onChangeThemeHandler = (newGameTheme) => {
     setGridTheme(newGameTheme);
   };
@@ -34,7 +30,9 @@ const GameSettingsMenu = () => {
     setGridSize(newGridSize);
   };
 
-  const generateThemeButtons = () => {
+  const generateThemeButtons = useMemo(() => {
+    const themeButtons = [];
+
     for (const key in GAME_THEMES) {
       themeButtons.push(
         <Button
@@ -48,9 +46,13 @@ const GameSettingsMenu = () => {
         </Button>
       );
     }
-  };
 
-  const generateNumOfPlayersButtons = () => {
+    return themeButtons;
+  }, [gridTheme]);
+
+  const generateNumOfPlayersButtons = useMemo(() => {
+    const numOfPlayersButtons = [];
+
     for (let i = 0; i < MAX_NUM_OF_PLAYERS; i++) {
       numOfPlayersButtons.push(
         <Button
@@ -62,9 +64,13 @@ const GameSettingsMenu = () => {
         </Button>
       );
     }
-  };
 
-  const generateGridSizeButtons = () => {
+    return numOfPlayersButtons;
+  }, [numOfPlayers]);
+
+  const generateGridSizeButtons = useMemo(() => {
+    const gridSizeButtons = [];
+
     for (const key in GAME_GRID_SIZES) {
       gridSizeButtons.push(
         <Button
@@ -78,27 +84,24 @@ const GameSettingsMenu = () => {
         </Button>
       );
     }
-  };
-
-  generateThemeButtons();
-  generateNumOfPlayersButtons();
-  generateGridSizeButtons();
+    return gridSizeButtons;
+  }, [gridSize]);
 
   return (
     <div className={styles['game-settings-menu']}>
       <h3 className={styles['game-settings-menu__title']}>Select Theme</h3>
       <div className={styles['game-settings-menu__buttons']}>
-        {themeButtons}
+        {generateThemeButtons}
       </div>
       <h3 className={styles['game-settings-menu__title']}>
         Numbers of Players
       </h3>
       <div className={styles['game-settings-menu__buttons']}>
-        {numOfPlayersButtons}
+        {generateNumOfPlayersButtons}
       </div>
       <h3 className={styles['game-settings-menu__title']}>Grid Size</h3>
       <div className={styles['game-settings-menu__buttons']}>
-        {gridSizeButtons}
+        {generateGridSizeButtons}
       </div>
       <StartNewGameButton
         settingsChoice={{ gridSize, numOfPlayers, gridTheme }}

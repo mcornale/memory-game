@@ -2,6 +2,7 @@ import styles from '../styles/GameInfoContainer.module.css';
 
 import GameInfo from './GameInfo';
 import { useSelector } from 'react-redux';
+import { useMemo, useRef } from 'react';
 
 const GameInfoContainer = (props) => {
   const minutesElapsed = useSelector((state) => state.game.minutesElapsed);
@@ -12,11 +13,12 @@ const GameInfoContainer = (props) => {
   const activePlayerIndex = useSelector(
     (state) => state.game.activePlayerIndex
   );
-  const gameInfoElements = [];
-  let gameEndTitle = '';
-  let gameEndSubtitle = '';
+  let gameEndTitle = useRef('');
+  let gameEndSubtitle = useRef('');
 
-  const generateGameInfos = () => {
+  const generateGameInfos = useMemo(() => {
+    const gameInfoElements = [];
+
     if (numOfPlayers === 1) {
       gameInfoElements.push(
         <GameInfo
@@ -35,8 +37,8 @@ const GameInfoContainer = (props) => {
       );
 
       if (props.gameEnd) {
-        gameEndTitle = 'You did it!';
-        gameEndSubtitle = "Game over! Here's how you got on";
+        gameEndTitle.current = 'You did it!';
+        gameEndSubtitle.current = "Game over! Here's how you got on";
       }
     } else {
       for (let i = 0; i < numOfPlayers; i++) {
@@ -59,22 +61,30 @@ const GameInfoContainer = (props) => {
           (gameInfoElement) => gameInfoElement.props.isWinner
         );
 
-        if (playerToWin.length > 1) gameEndTitle = "It's a tie!";
-        else gameEndTitle = `${playerToWin[0].props.children} Wins!`;
+        if (playerToWin.length > 1) gameEndTitle.current = "It's a tie!";
+        else gameEndTitle.current = `${playerToWin[0].props.children} Wins!`;
 
-        gameEndSubtitle = 'Game over! Here are the results';
+        gameEndSubtitle.current = 'Game over! Here are the results';
       }
     }
-  };
 
-  generateGameInfos();
+    return gameInfoElements;
+  }, [
+    activePlayerIndex,
+    moves,
+    numOfPlayers,
+    pairs,
+    props.gameEnd,
+    minutesElapsed,
+    secondsElapsed,
+  ]);
 
   return (
     <>
       {props.gameEnd && (
         <div>
-          <h1>{gameEndTitle}</h1>
-          <p>{gameEndSubtitle}</p>
+          <h1>{gameEndTitle.current}</h1>
+          <p>{gameEndSubtitle.current}</p>
         </div>
       )}
 
@@ -83,7 +93,7 @@ const GameInfoContainer = (props) => {
           styles[`game-info-container--${props.layout}`]
         }`}
       >
-        {gameInfoElements}
+        {generateGameInfos}
       </div>
     </>
   );
